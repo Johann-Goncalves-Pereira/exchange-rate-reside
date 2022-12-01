@@ -30,7 +30,7 @@ export default component$(() => {
           <div class="flex items-end gap-1">
             <input
               type="number"
-              value={state.hours}
+              value={state.hours === 0 ? "" : state.hours}
               class="w-56 min-w-min rounded-sm bg-slate-600 py-1 px-2 text-2xl text-white outline-none"
               onInput$={({ target }) =>
                 // @ts-ignore
@@ -77,29 +77,59 @@ export default component$(() => {
             ></input>
           </div>
 
-          <div class="grid">
-            <label>Tax + Accountant</label>
-            <div class="flex items-end gap-1">
-              <input
-                type="number"
-                step="100"
-                value={(fullAmount * (100 - 10.67)) / 100}
-                class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
-              ></input>
-              <span class="text-red-600">- 10.67% </span>
-            </div>
-          </div>
+          <div class="flex items-center gap-3">
+            <div>
+              <div class="grid">
+                <label>Tax + Accountant</label>
+                <div class="flex items-end gap-1">
+                  <input
+                    type="number"
+                    step="100"
+                    value={(fullAmount * (100 - 10.67)) / 100}
+                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                  ></input>
+                  <span class="text-red-600">- 10.67% </span>
+                </div>
+              </div>
 
-          <div class="grid">
-            <label>Inter Empresas Parado</label>
-            <div class="flex items-end gap-1">
-              <input
-                type="number"
-                step="100"
-                value={fullAmount * (30 - 10.67)}
-                class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
-              ></input>
-              <span class="text-emerald-500"> {30 - 10.67}% </span>
+              <div class="grid">
+                <label>Inter Empresas Parado</label>
+                <div class="flex items-end gap-1">
+                  <input
+                    type="number"
+                    step="100"
+                    value={fullAmount * (30 - 10.67)}
+                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                  ></input>
+                  <span class="text-emerald-500"> {30 - 10.67}% </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid gap-4 pt-8">
+              <div class="grid">
+                <div class="flex items-end gap-1">
+                  <input
+                    type="number"
+                    step="100"
+                    value={(fullAmount * 30) / 100}
+                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                  ></input>
+                  <span class="text-red-500"> 30% </span>
+                </div>
+              </div>
+
+              <div class="grid">
+                <div class="flex items-end gap-1">
+                  <input
+                    type="number"
+                    step="100"
+                    value={(fullAmount * 70) / 100}
+                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                  ></input>
+                  <span class="text-emerald-500"> 70% </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
