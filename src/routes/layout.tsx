@@ -27,30 +27,36 @@ export default component$(() => {
       <main class="grid h-full place-content-center text-white">
         <div class="grid">
           <label class="capitalize ">hours</label>
-          <div class="flex items-end gap-1">
-            <input
-              type="number"
-              value={state.hours === 0 ? "" : state.hours}
-              class="w-56 min-w-min rounded-sm bg-slate-600 py-1 px-2 text-2xl text-white outline-none"
-              onInput$={({ target }) =>
-                // @ts-ignore
-                (state.hours = (target as HTMLInputElement).value).replace(
-                  /(?![0-9])./gim,
-                  ""
-                )
-              }
-            />
-            <span class="">* $20</span>
-          </div>
+          <input
+            type="number"
+            value={state.hours === 0 ? "" : state.hours}
+            class="w-56 min-w-min rounded-sm bg-slate-600 py-1 px-2 text-2xl text-white outline-none"
+            onInput$={({ target }) =>
+              // @ts-ignore
+              (state.hours = (target as HTMLInputElement).value).replace(
+                /(?![0-9])./gim,
+                ""
+              )
+            }
+          />
 
           <div class="flex items-end gap-1">
             <div class="grid">
               <label>Rate</label>
               <input
-                type="number"
-                step="100"
-                value={state.hours * 20}
-                class="pointer-events-none w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                value={`${(state.hours * 20).toLocaleString("pt-BR")} $`}
+                class="w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+              ></input>
+            </div>
+            <span class="">* $20</span>
+          </div>
+
+          <div class="flex items-end gap-1">
+            <div class="grid">
+              <label>Amount</label>
+              <input
+                value={`${fullAmount.toLocaleString("pt-BR")} R$`}
+                class="flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
               ></input>
             </div>
             <Resource
@@ -67,26 +73,17 @@ export default component$(() => {
             />
           </div>
 
-          <div class="grid">
-            <label>Amount</label>
-            <input
-              type="number"
-              step="100"
-              value={fullAmount}
-              class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
-            ></input>
-          </div>
-
           <div class="flex items-center gap-3">
             <div>
               <div class="grid">
-                <label>Tax + Accountant</label>
+                <label>Amount - Tax</label>
                 <div class="flex items-end gap-1">
                   <input
-                    type="number"
-                    step="100"
-                    value={(fullAmount * (100 - 10.67)) / 100}
-                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                    value={`${(
+                      (fullAmount * (100 - 10.67)) /
+                      100
+                    ).toLocaleString("pt-BR")} R$`}
+                    class="flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
                   ></input>
                   <span class="text-red-600">- 10.67% </span>
                 </div>
@@ -96,10 +93,11 @@ export default component$(() => {
                 <label>Inter Empresas Parado</label>
                 <div class="flex items-end gap-1">
                   <input
-                    type="number"
-                    step="100"
-                    value={fullAmount * (30 - 10.67)}
-                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                    value={`${(
+                      (fullAmount * (30 - 10.67)) /
+                      100
+                    ).toLocaleString("pt-BR")} R$`}
+                    class="flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
                   ></input>
                   <span class="text-emerald-500"> {30 - 10.67}% </span>
                 </div>
@@ -110,10 +108,10 @@ export default component$(() => {
               <div class="grid">
                 <div class="flex items-end gap-1">
                   <input
-                    type="number"
-                    step="100"
-                    value={(fullAmount * 30) / 100}
-                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                    value={`${((fullAmount * 30) / 100).toLocaleString(
+                      "pt-BR"
+                    )} R$`}
+                    class="flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
                   ></input>
                   <span class="text-red-500"> 30% </span>
                 </div>
@@ -122,10 +120,10 @@ export default component$(() => {
               <div class="grid">
                 <div class="flex items-end gap-1">
                   <input
-                    type="number"
-                    step="100"
-                    value={(fullAmount * 70) / 100}
-                    class="pointer-events-none flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
+                    value={`${((fullAmount * 70) / 100).toLocaleString(
+                      "pt-BR"
+                    )} R$`}
+                    class="flex w-56 min-w-min whitespace-nowrap rounded bg-slate-700 py-1 px-2 text-2xl"
                   ></input>
                   <span class="text-emerald-500"> 70% </span>
                 </div>
